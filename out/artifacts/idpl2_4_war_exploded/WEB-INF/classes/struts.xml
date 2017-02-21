@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!--表示可以使用动态方法调用，即userAction!delete.action的形式-->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!--表示struts处于开发状态-->
+    <constant name="struts.devMode" value="true" />
+	<!--使用默认的命名空间、即根目录/，在访问的时候，直接http://localhost:8080/webShopping/userAction!delete.action-->
+    <package name="default"  extends="struts-default">
+        <action name="experiment"  class="com.idpl.action.ExperimentAction">
+            <result name="success">/testShow.jsp</result>
+            <result name="fail">/experiment.jsp</result>
+            <result name="login">/login.html</result>
+        </action>
+        
+        <action name="login" class="com.idpl.action.LoginAction">
+        	<result name="true">/experiment.jsp</result>
+        	<result name="false">/login.html</result>
+        </action>
+        
+        <action name="logout" class="com.idpl.action.LogoutAction">
+        	<result name="true">/login.html</result>
+        	<result name="false">/experiment.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="register" class="com.idpl.action.RegisterAction">
+        	<result name="true">./registerSuccess.jsp</result>
+        	<result name="false">/registerFail.jsp</result>
+        </action>
+             
+        <action name="add" class="com.idpl.action.AddAction">
+        	<result name="success">/test.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="test" class="com.idpl.action.TestAction">
+        	<result name="success" type="chain">showTest</result>
+        	<result name="fail">/test.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="showTest" class="com.idpl.action.ShowTestAction">
+        	<result name="success">/testShow.jsp</result>
+        	<result name="fail">/experiment.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="showStage" class="com.idpl.action.ShowStageAction">
+        	<result name="success">/stageShow.jsp</result>
+        	<result name="fail">/experimentShow.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="submitExperiment" class="com.idpl.action.SubmitAction">
+        	<result name="success">/submitSuccess.jsp</result>
+        	<result name="fail">/submitFail.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="showExperiment" class="com.idpl.action.ShowExperimentAction">
+        	<result name="success">/experimentShow.jsp</result>
+        	<result name="manager">/ManagerExperimentShow.jsp</result>
+        	<result name="fail">/experiment.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="deleteStage" class="com.idpl.action.DeleteStageAction">
+        	<result name="success" type="chain">showTest</result>
+        	<result name="fail">/experiment.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="updateStage" class="com.idpl.action.UpdateStageAction">
+        	<result name="success">/testUpdate.jsp</result>
+        	<result name="fail">/experiment.jsp</result>
+        	<result name="login">/login.html</result>
+        </action>
+        
+        <action name="updateStage2" class="com.idpl.action.UpdateStageAction2">
+        	<result name="success" type="chain">showTest</result>
+        	<result name="fail" type="chain">updateStage</result>
+        	<result name="login">/login.jsp</result>
+        </action>
+        
+        <action name="deleteExperiment" class="com.idpl.action.DeleteExperimentAction">
+        	<result name="success" type="chain">showExperiment</result>
+        	<result name="fail" type="chain">showExperiment</result>
+        	<result name="login">/login.jsp</result>
+        </action>    
+    </package>
+    
+    <package name="default2" namespace="/" extends="json-default">
+     	<action name="managerShowDirection" class="com.idpl.action.ManagerShowDirectionAction">
+        	<result name="success" type="json"></result>
+        </action>
+          
+        <action name="CheckUsernameAction" class="com.idpl.action.CheckUsernameAction">  
+             <result type="json"></result>  
+        </action>
+    </package>  
+</struts>
