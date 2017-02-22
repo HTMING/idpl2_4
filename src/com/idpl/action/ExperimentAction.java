@@ -1,9 +1,14 @@
 package com.idpl.action;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.http.*;
 
+import cn.edu.buaa.jsi.portal.SExperiment;
+import cn.edu.buaa.jsi.portal.Transfer;
 import org.apache.struts2.ServletActionContext;
 
 import com.idpl.dao.*;
@@ -15,6 +20,16 @@ public class ExperimentAction extends BaseAction {
 	private String timeStart_time;
 	private String timeEnd_date;
 	private String timeEnd_time;
+
+	//add by tijk
+	private String src_host;
+	private String dst_host;
+	private String src_path;
+    private String dst_path;
+    private String cron_hour;
+    private String cron_minute;
+
+
 	private long timeStartUnixtime;
 	private long timeEndUnixtime;
 	private long createUnixtime;
@@ -68,6 +83,24 @@ public class ExperimentAction extends BaseAction {
 	public void setTimeEnd_time(String timeEnd_time){
 		this.timeEnd_time=timeEnd_time;
 	}
+
+
+
+
+	public void setSrc_host(String src_host) {this.src_host=src_host;}
+	public void setDst_host(String dst_host) {this.dst_host=dst_host;}
+	public void setSrc_path(String src_path) {this.src_path=src_path;}
+	public void setDst_path(String dst_path) {this.dst_path=dst_path;}
+	public void setCron_hour(String cron_hour) {this.cron_hour=cron_hour;}
+	public void setCron_minute(String cron_minute) {this.cron_minute=cron_minute;}
+
+	public String getSrc_host() {return this.src_host;}
+    public String getDst_host() {return this.dst_host;}
+    public String getSrc_path() {return this.src_path;}
+    public String getDst_path() {return this.dst_path;}
+    public String getCron_hour() {return this.cron_hour;}
+    public String getCron_minute() {return this.cron_minute;}
+
 	public long getTimeStartUnixtime(){
 		return this.timeStartUnixtime;
 	}
@@ -101,12 +134,12 @@ public class ExperimentAction extends BaseAction {
 	public String execute(){
 		HttpSession session = ServletActionContext.getRequest ().getSession();
 //		String Date;
-		long timeStart=0;
-		long timeEnd=0;
+		//long timeStart=0;
+		//long timeEnd=0;
 		String result="fail";
 		String username=(String) session.getAttribute("username");
 		
-
+/*
 		if(!timeStart_date.equals("")&&!timeStart_time.equals(""))
 		{
 			timeStart=timeStartUnixtime;
@@ -136,20 +169,67 @@ public class ExperimentAction extends BaseAction {
 				return result;
 			}
 		}
-		
+*/
 		if(username!=null)
 		{
 			ExperimentDAO experimentDAO=ExperimentDAOFactory.getExperimentDAOInstance();
 			Experiment experiment=new Experiment();
 			experiment.setExperimentName(experimentName);
-			experiment.setTimeStart(timeStart);
-			experiment.setTimeEnd(timeEnd);
+			experiment.setSrc_host(src_host);
+			experiment.setDst_host(dst_host);
+			experiment.setSrc_path(src_path);
+			experiment.setDst_path(dst_path);
+			experiment.setCron_hour(cron_hour);
+			experiment.setCron_minute(cron_minute);
+			//experiment.setTimeStart(timeStart);
+			//experiment.setTimeEnd(timeEnd);
 //			experiment.setDate(date);
-			experiment.setTimeCreate(createUnixtime);
+			//experiment.setTimeCreate(createUnixtime);
 			experiment.setUsername(username);
 			try {
 				
 				experimentId=experimentDAO.insert(experiment, "experiment");
+				//session.setAttribute("experimentId", ExperimentId);
+				result="success";
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Record record=null;
+			int repeat_number=-1;
+			int number_number=-1;
+			int parallel_number=-1;
+			ExperimentDAO experimentDAO1=ExperimentDAOFactory.getExperimentDAOInstance();
+			try {
+				experiment = experimentDAO1.queryById(experimentId, "experiment", username);
+				Transfer transfer = Transfer.getInstance();
+				transfer.setUser(username);
+				transfer.setId(experimentId);
+				transfer.setStarttime(experiment.getTimeStart());
+				transfer.setStoptime(experiment.getTimeEnd());
+
+				List<SExperiment> sexpList = new ArrayList<SExperiment>();
+				SExperiment sexperiment=null;
+				/* get Stage List*/
+				List<Record> expList = null;
+				RecordDAO recordDAO=RecordDAOFactory.getRecordDAOInstance();
+				expList=recordDAO.queryAll("test",username,experimentId);
+				Iterator<Record> iter=expList.iterator();
+				while(iter.hasNext()){
+					record=iter.next();
+					repeat_number=Integer.parseInt(record.getRepeat());
+					number_number=Integer.parseInt(record.getNumber());
+					parallel_number=Integer.parseInt(record.getParallel());
+					sexperiment=new SExperiment(record.getRecordId(),record.getDataSource(),record.getDataDestination(),
+							record.getMethod(),record.getWay(),record.getProtocol(),record.getDataSize(),number_number,parallel_number,repeat_number);
+					System.out.println(record.getRecordId()+record.getDataSource()+record.getDataDestination()+
+							record.getMethod()+record.getWay()+record.getProtocol()+record.getDataSize()+repeat_number+number_number+parallel_number);
+					sexpList.add(sexperiment);
+				}
+				transfer.setExpList(sexpList);
+				transfer.submit();
+
+				experimentDAO.submit("experiment", experimentId);
 				//session.setAttribute("experimentId", ExperimentId);
 				result="success";
 			} catch (Exception e) {

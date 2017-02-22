@@ -30,7 +30,8 @@
         	<result name="true">./registerSuccess.jsp</result>
         	<result name="false">/registerFail.jsp</result>
         </action>
-             
+
+<!--
         <action name="add" class="com.idpl.action.AddAction">
         	<result name="success">/test.jsp</result>
         	<result name="login">/login.html</result>
@@ -53,6 +54,7 @@
         	<result name="fail">/experimentShow.jsp</result>
         	<result name="login">/login.html</result>
         </action>
+-->
         
         <action name="submitExperiment" class="com.idpl.action.SubmitAction">
         	<result name="success">/submitSuccess.jsp</result>

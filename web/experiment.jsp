@@ -208,9 +208,10 @@
 						<!-- wizard steps -->
 						<ul class="bwizard-steps">
 							<li class="active">
-									<span class="label badge-inverse">1</span>
-									<a href="#inverse-tab1" data-toggle="tab">Step 1: Create An Experiment</a>
+<!--									<span class="label badge-inverse">1</span>				-->
+									<a href="#inverse-tab1" data-toggle="tab">Create An Experiment</a>
 							</li>
+<!--
 							<li>
 									<span class="label badge-inverse">2</span>
 									<a>Step 2</a>
@@ -219,6 +220,7 @@
 									<span class="label badge-inverse">3</span>
 									<a>Step 3</a>
 							</li>
+-->
 						</ul>
 						<!-- end wizard steps -->	
 						
@@ -257,7 +259,43 @@
 																<input type="text" class="span12" name="experimentName" id="experimentName" />
 															</div>
 														</div>
-														
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="input01">SRC_HOST</label>
+                                                            <div class="controls">
+                                                                <input type="text" class="span12" name="SRC_HOST" id="SRC_HOST" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="input01">DST_HOST</label>
+                                                            <div class="controls">
+                                                                <input type="text" class="span12" name="DST_HOST" id="DST_HOST" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="input01">SRC_PATH</label>
+                                                            <div class="controls">
+                                                                <input type="text" class="span12" name="SRC_PATH" id="SRC_PATH" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="input01">DST_PATH</label>
+                                                            <div class="controls">
+                                                                <input type="text" class="span12" name="DST_PATH" id="DST_PATH" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="input01">cron_hour</label>
+                                                            <div class="controls">
+                                                                <input type="text" class="span12" name="cron_hour" id="cron_hour" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="input01">cron_minute</label>
+                                                            <div class="controls">
+                                                                <input type="text" class="span12" name="cron_minute" id="cron_minute" />
+                                                            </div>
+                                                        </div>
+
 														<div class="control-group" id="timepicker-demo">
 															<label class="control-label">Submit Time</label>
 															<div class="controls">
@@ -301,7 +339,7 @@
 																Cancel
 															</button>
 															<button type="submit" class="btn medium btn-primary" onclick="getCurrentTime()">
-																Continue
+                                                                Create
 															</button>
 														</div>
 													</fieldset>

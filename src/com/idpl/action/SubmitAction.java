@@ -26,7 +26,8 @@ public class SubmitAction extends BaseAction{
 		String result="fail";
 		
 		String username=(String) session.getAttribute("username");
-//		System.out.println(experimentId);
+//System.out.println(experimentId);
+/*
 		if(username!=null)
 		{
 			Record record=null;
@@ -45,6 +46,7 @@ public class SubmitAction extends BaseAction{
 				List<SExperiment> sexpList = new ArrayList<SExperiment>();
 				SExperiment sexperiment=null;
 				/* get Stage List*/
+/*
 				List<Record> expList = null;
 				RecordDAO recordDAO=RecordDAOFactory.getRecordDAOInstance();
 				expList=recordDAO.queryAll("test",username,experimentId);
@@ -72,6 +74,7 @@ public class SubmitAction extends BaseAction{
 			}
 		}
 		else result="login";
+*/
 		return result;
 	}
 }

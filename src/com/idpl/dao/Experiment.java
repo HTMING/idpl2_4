@@ -4,18 +4,43 @@ public class Experiment {
 	private long experimentId;
 	private String experimentName;
 	private String username;
-	private long timeStart;    //¿ªÊ¼Ê±¼ä
-	private long timeEnd;      //½áÊøÊ±¼ä
-	private long timeCreate;  //´´½¨Ê±¼ä
-	private long date;          //Êý¾ÝÉè¶¨Ê±¼ä
-	private String startRunning;  //Êý¾ÝÊµ¼Ê¿ªÊ¼´«ÊäÊ±¼ä
-	private String completedTime; //Êý¾ÝÊµ¼Ê½áÊø´«ÊäÊ±¼ä
-	private String state;         //Êý¾Ý´«Êä×´Ì¬
+	private long timeStart;    //ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
+	private long timeEnd;      //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private long timeCreate;  //ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private long date;          //ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨Ê±ï¿½ï¿½
+	private String startRunning;  //ï¿½ï¿½ï¿½ï¿½Êµï¿½Ê¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String completedTime; //ï¿½ï¿½ï¿½ï¿½Êµï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String state;         //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½×´Ì¬
 	private String submit;
 	private int stageNumber;
 	private int completeNumber;
 	private int allNumber;
 	private int percentage;
+
+	//add by tijk
+	private String src_host;
+	private String dst_host;
+	private String src_path;
+	private String dst_path;
+	private String cron_hour;
+	private String cron_minute;
+
+
+	public void setSrc_host(String src_host) {this.src_host=src_host;}
+	public void setDst_host(String dst_host) {this.dst_host=dst_host;}
+	public void setSrc_path(String src_path) {this.src_path=src_path;}
+	public void setDst_path(String dst_path) {this.dst_path=dst_path;}
+	public void setCron_hour(String cron_hour) {this.cron_hour=cron_hour;}
+	public void setCron_minute(String cron_minute) {this.cron_minute=cron_minute;}
+
+	public String getSrc_host() {return this.src_host;}
+	public String getDst_host() {return this.dst_host;}
+	public String getSrc_path() {return this.src_path;}
+	public String getDst_path() {return this.dst_path;}
+	public String getCron_hour() {return this.cron_hour;}
+	public String getCron_minute() {return this.cron_minute;}
+
+
 	public long getExperimentId(){
 		return this.experimentId;
 	}
@@ -35,25 +60,25 @@ public class Experiment {
 	public void setUsername(String username){
 		this.username=username;
 	}
-	public long getTimeStart(){    //µÃµ½Êý¾ÝÉè¶¨´«Êä¿ªÊ¼Ê±¼ä
+	public long getTimeStart(){    //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ä¿ªÊ¼Ê±ï¿½ï¿½
 		return this.timeStart;
 	}
-	public long getTimeEnd(){      //µÃµ½Êý¾ÝÉè¶¨´«Êä½áÊøÊ±¼ä
+	public long getTimeEnd(){      //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		return this.timeEnd;
 	}
 	public long getTimeCreate(){
 		return this.timeCreate;
 	}
-	public long getDate(){          //µÃµ½Êý¾ÝÉè¶¨Ê±¼ä
+	public long getDate(){          //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨Ê±ï¿½ï¿½
 		return this.date;
 	}
-	public String getStartRunning(){  //µÃµ½Êý¾Ý´«ÊäÊµ¼Ê¿ªÊ¼Ê±¼ä
+	public String getStartRunning(){  //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê¿ï¿½Ê¼Ê±ï¿½ï¿½
 		return this.startRunning;
 	}
-	public String getCompletedTime(){ //µÃµ½Êý¾Ý´«ÊäÊµ¼Ê½áÊøÊ±¼ä
+	public String getCompletedTime(){ //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		return this.completedTime;
 	}
-	public String getState(){        //µÃµ½Êý¾Ý´«Êä×÷Òµ×´Ì¬
+	public String getState(){        //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½Òµ×´Ì¬
 		return this.state;
 	}
 	public String getSubmit(){
@@ -71,25 +96,25 @@ public class Experiment {
 	public int getPercentage(){
 		return this.percentage;
 	}
-	public void setTimeStart(long timeStart){   //ÉèÖÃÊý¾ÝÉè¶¨¿ªÊ¼Ê±¼ä
+	public void setTimeStart(long timeStart){   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 		this.timeStart=timeStart;
 	}
-	public void setTimeEnd(long timeEnd){     //ÉèÖÃÊý¾ÝÉè¶¨½áÊøÊ±¼ä
+	public void setTimeEnd(long timeEnd){     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		this.timeEnd=timeEnd;
 	}
 	public void setTimeCreate(long timeCreate){
 		this.timeCreate=timeCreate;
 	}
-	public void setDate(long date){         //ÉèÖÃÊý¾ÝÉè¶¨Ê±¼ä
+	public void setDate(long date){         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨Ê±ï¿½ï¿½
 		this.date=date;
 	}
-	public void setStartRunning(String startRunning){     //ÉèÖÃÊý¾Ý´«ÊäÊµ¼Ê¿ªÊ¼Ê±¼ä
+	public void setStartRunning(String startRunning){     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê¿ï¿½Ê¼Ê±ï¿½ï¿½
 		this.startRunning=startRunning;
 	}
-	public void setCompletedTime(String completedTime){   //ÉèÖÃÊý¾Ý´«ÊäÊµ¼Ê½áÊøÊ±¼ä
+	public void setCompletedTime(String completedTime){   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		this.completedTime=completedTime;
 	}
-	public void setState(String state){         //ÉèÖÃÊý¾Ý´«Êä×´Ì¬
+	public void setState(String state){         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½×´Ì¬
 		this.state=state;
 	}
 	public void setSubmit(String submit){
