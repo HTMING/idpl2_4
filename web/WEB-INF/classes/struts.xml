@@ -10,7 +10,7 @@
 	<!--使用默认的命名空间、即根目录/，在访问的时候，直接http://localhost:8080/webShopping/userAction!delete.action-->
     <package name="default"  extends="struts-default">
         <action name="experiment"  class="com.idpl.action.ExperimentAction">
-            <result name="success">/testShow.jsp</result>
+        <!-- <result name="success">/testShow.jsp</result> -->
             <result name="fail">/experiment.jsp</result>
             <result name="login">/login.html</result>
         </action>
@@ -93,7 +93,7 @@
         	<result name="login">/login.jsp</result>
         </action>    
     </package>
-    
+<!--
     <package name="default2" namespace="/" extends="json-default">
      	<action name="managerShowDirection" class="com.idpl.action.ManagerShowDirectionAction">
         	<result name="success" type="json"></result>
@@ -102,5 +102,6 @@
         <action name="CheckUsernameAction" class="com.idpl.action.CheckUsernameAction">  
              <result type="json"></result>  
         </action>
-    </package>  
+    </package>
+-->
 </struts>

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ExperimentImpl implements ExperimentDAO {
 	public long insert(Experiment experiment,String TableName) throws Exception{
-		String sql="INSERT INTO "+TableName+"(id,experimentName,username,timeStart,timeEnd,timeCreate) VALUES (?,?,?,?,?,?)";
+		String sql="INSERT INTO "+TableName+"(id,experimentName,username,src_host,dst_host,src_path,dst_path,cron_hour,cron_minute) VALUES (?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt=null;
 		DataBaseConnection dbc=null;
 		
@@ -25,10 +25,20 @@ public class ExperimentImpl implements ExperimentDAO {
 			pstmt.setLong(1, NewId);
 			pstmt.setString(2, experiment.getExperimentName());
 			pstmt.setString(3, experiment.getUsername());
-			pstmt.setLong(4 ,experiment.getTimeStart());
-			pstmt.setLong(5 ,experiment.getTimeEnd());
+
+
+			//by tijk
+
+			pstmt.setString(4, experiment.getSrc_host());
+			pstmt.setString(5, experiment.getDst_host());
+			pstmt.setString(6, experiment.getSrc_path());
+			pstmt.setString(7, experiment.getDst_path());
+			pstmt.setString(8, experiment.getCron_hour());
+			pstmt.setString(9, experiment.getCron_minute());
+			//pstmt.setLong(4 ,experiment.getTimeStart());
+			//pstmt.setLong(5 ,experiment.getTimeEnd());
 //			pstmt.setLong(6 ,0);
-			pstmt.setLong(6 ,experiment.getTimeCreate());
+			//pstmt.setLong(6 ,experiment.getTimeCreate());
 			pstmt.executeUpdate();
 			pstmt.close();
 			

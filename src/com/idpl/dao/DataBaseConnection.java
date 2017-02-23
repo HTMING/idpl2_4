@@ -16,11 +16,17 @@ public class DataBaseConnection {
 	private String password;
 	public static final String XMLpath = "../webapps/config/Node.xml";
 	*/
-	
+
+/*
 	private String url="jdbc:mysql://115.25.138.209:3306/cac";
 	private static final String user="idpl";
 	private static final String password="idpl@jsi";
-	
+*/
+	private String url="jdbc:mysql://localhost:3306/idpl";
+	private static final String user="root";
+	private static final String password="password";
+
+
 /*	private String url="jdbc:mysql://localhost:3306/cac";
 	private static final String user="root";
 	private static final String password="123456";*/

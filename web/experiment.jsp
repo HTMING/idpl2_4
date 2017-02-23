@@ -262,25 +262,25 @@
                                                         <div class="control-group">
                                                             <label class="control-label" for="input01">SRC_HOST</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="SRC_HOST" id="SRC_HOST" />
+                                                                <input type="text" class="span12" name="src_host" id="SRC_HOST" />
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="input01">DST_HOST</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="DST_HOST" id="DST_HOST" />
+                                                                <input type="text" class="span12" name="dst_host" id="DST_HOST" />
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="input01">SRC_PATH</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="SRC_PATH" id="SRC_PATH" />
+                                                                <input type="text" class="span12" name="src_path" id="SRC_PATH" />
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="input01">DST_PATH</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="DST_PATH" id="DST_PATH" />
+                                                                <input type="text" class="span12" name="dst_path" id="DST_PATH" />
                                                             </div>
                                                         </div>
                                                         <div class="control-group">

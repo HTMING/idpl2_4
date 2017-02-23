@@ -86,6 +86,13 @@ public class ExperimentAction extends BaseAction {
 
 
 
+    public String getSrc_host() {return src_host;}
+    public String getDst_host() {return dst_host;}
+    public String getSrc_path() {return src_path;}
+    public String getDst_path() {return dst_path;}
+    public String getCron_hour() {return cron_hour;}
+    public String getCron_minute() {return cron_minute;}
+
 
 	public void setSrc_host(String src_host) {this.src_host=src_host;}
 	public void setDst_host(String dst_host) {this.dst_host=dst_host;}
@@ -94,12 +101,7 @@ public class ExperimentAction extends BaseAction {
 	public void setCron_hour(String cron_hour) {this.cron_hour=cron_hour;}
 	public void setCron_minute(String cron_minute) {this.cron_minute=cron_minute;}
 
-	public String getSrc_host() {return this.src_host;}
-    public String getDst_host() {return this.dst_host;}
-    public String getSrc_path() {return this.src_path;}
-    public String getDst_path() {return this.dst_path;}
-    public String getCron_hour() {return this.cron_hour;}
-    public String getCron_minute() {return this.cron_minute;}
+
 
 	public long getTimeStartUnixtime(){
 		return this.timeStartUnixtime;
@@ -177,7 +179,7 @@ public class ExperimentAction extends BaseAction {
 			experiment.setExperimentName(experimentName);
 			experiment.setSrc_host(src_host);
 			experiment.setDst_host(dst_host);
-			experiment.setSrc_path(src_path);
+			experiment.setSrc_path(src_path);;
 			experiment.setDst_path(dst_path);
 			experiment.setCron_hour(cron_hour);
 			experiment.setCron_minute(cron_minute);
@@ -186,15 +188,21 @@ public class ExperimentAction extends BaseAction {
 //			experiment.setDate(date);
 			//experiment.setTimeCreate(createUnixtime);
 			experiment.setUsername(username);
+			System.out.println("112");
 			try {
 				
 				experimentId=experimentDAO.insert(experiment, "experiment");
 				//session.setAttribute("experimentId", ExperimentId);
 				result="success";
+                System.out.println("113");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+
+
+/*
 			Record record=null;
 			int repeat_number=-1;
 			int number_number=-1;
@@ -210,7 +218,10 @@ public class ExperimentAction extends BaseAction {
 
 				List<SExperiment> sexpList = new ArrayList<SExperiment>();
 				SExperiment sexperiment=null;
-				/* get Stage List*/
+				//get Stage List
+
+
+
 				List<Record> expList = null;
 				RecordDAO recordDAO=RecordDAOFactory.getRecordDAOInstance();
 				expList=recordDAO.queryAll("test",username,experimentId);
@@ -236,6 +247,11 @@ public class ExperimentAction extends BaseAction {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+*/
+            Transfer transfer = Transfer.getInstance();
+            transfer.setUser(username);
+            transfer.setId(experimentId);
+
 		}
 		else
 			result="login";
