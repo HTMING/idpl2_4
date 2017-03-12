@@ -235,12 +235,14 @@
 																<th>Source</th>
 																<th>Destination</th>
 																<th>Direction</th>
-																<th>Data Protocol</th>
+                                                                <th>Date Set</th>
+																<!--<th>Data Protocol</th>
 																<th>IP Protocol</th>
 																<th>Date Set</th>
 																<th>Number of File(s)</th>
 																<th>Number of Stream(s)</th>
 																<th>Repeat</th>
+																-->
 															</tr>
 														</thead>
 														<tbody>

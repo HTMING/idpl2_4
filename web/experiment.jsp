@@ -85,7 +85,13 @@
 	<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
 	<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
 	<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)" />
-	
+	<style type="text/css">
+		.control-label11 {
+			margin: auto;
+		}
+	</style>
+
+
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 
   <body>
@@ -251,49 +257,73 @@
 													</div>
 										        </s:if>
 									        <!-- content goes here -->
-												<form class="form-horizontal themed" id="uislider-demo" action="experiment"  method="post" novalidate="novalidate">
+												<form class="form-horizontal themed" id="uislider-demo1" action="experiment"  method="post" novalidate="novalidate">
 													<fieldset>
 														<div class="control-group">
-															<label class="control-label" for="input01">Experiment Name</label>
+															<label class="control-label" for="experimentName">Experiment Name</label>
 															<div class="controls">
 																<input type="text" class="span12" name="experimentName" id="experimentName" />
 															</div>
 														</div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="input01">SRC_HOST</label>
+                                                            <label class="control-label" for="src_host">SRC_HOST</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="src_host" id="SRC_HOST" />
+                                                                <input type="text" class="span12" name="src_host" id="src_host" />
                                                             </div>
+															<label class="control-label11" >&nbsp;&nbsp; Host from which data will be copied</label>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="input01">DST_HOST</label>
+                                                            <label class="control-label" for="dst_host">DST_HOST</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="dst_host" id="DST_HOST" />
+                                                                <input type="text" class="span12" name="dst_host" id="dst_host" />
                                                             </div>
+                                                            <label class="control-label11" >&nbsp;&nbsp; Host to which data will be copied</label>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="input01">SRC_PATH</label>
+                                                            <label class="control-label" for="src_path">SRC_PATH</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="src_path" id="SRC_PATH" />
+                                                                <input type="text" class="span12" name="src_path" id="src_path" />
                                                             </div>
+                                                            <label class="control-label11" >&nbsp;&nbsp; Full path name of the file to be copied</label>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="input01">DST_PATH</label>
+                                                            <label class="control-label" for="dst_path">DST_PATH</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="dst_path" id="DST_PATH" />
+                                                                <input type="text" class="span12" name="dst_path" id="dst_path" />
                                                             </div>
+                                                            <label class="control-label11" >&nbsp;&nbsp; relative path to which file will be copied</label>
                                                         </div>
+
                                                         <div class="control-group">
-                                                            <label class="control-label" for="input01">cron_hour</label>
+                                                            <label class="control-label" >TESTSEQUENCE</label>
+                                                            <div class="controls">
+                                                            <form role="form">
+                                                                <div class="form-group">
+                                                                    <select class="form-control" name="testsequence">
+                                                                        <option value="iperf">iperf</option>
+                                                                        <option value="scp">scp</option>
+                                                                        <option value="fdt">fdt</option>
+                                                                        <option value="netcat">netcat</option>
+                                                                    </select>
+                                                                </div>
+                                                            </form>
+                                                            </div>
+                                                            <label class="control-label11" >&nbsp;&nbsp; the tool to translate the data</label>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="cron_hour">cron_hour</label>
                                                             <div class="controls">
                                                                 <input type="text" class="span12" name="cron_hour" id="cron_hour" />
                                                             </div>
+                                                            <label class="control-label11" >&nbsp;&nbsp; hour on which placement will occur</label>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="input01">cron_minute</label>
+                                                            <label class="control-label" for="cron_minute">cron_minute</label>
                                                             <div class="controls">
                                                                 <input type="text" class="span12" name="cron_minute" id="cron_minute" />
                                                             </div>
+                                                            <label class="control-label11" >&nbsp;&nbsp; minute on which placement will occur</label>
                                                         </div>
 
 														<div class="control-group" id="timepicker-demo">
@@ -524,6 +554,28 @@
       <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/exporting.js"></script>
   <script type="text/javascript" src="js/dark-unica.js"></script>
+    <script type="text/javascript" src="js/include/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#uislider-demo1").validate({
+                rules: {
+                    experimentName : "required",
+                    src_host : "required",
+                    dst_host : "required",
+                    src_path : "required",
+                    dst_path : "required"
+                },
+                highlight : function(label) {
+                    $(label).closest('.control-group').removeClass('success');
+                    $(label).closest('.control-group').addClass('error');
+                },
+                success : function(label) {
+                    label.text('').addClass('valid').closest('.control-group').addClass('success');
+                }
+            });
+
+        });
+    </script>
   <script>
     $(function () {
     var arrayList = ["BUAAtoCNIC", 

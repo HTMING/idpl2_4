@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nodes>
+        <service name="jsonService">http://115.25.138.209:11401/perfsonar/</service>
+</nodes>

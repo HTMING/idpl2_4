@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<nodes>
+	<conderNodeInfo>http://mickey.buaa.edu.cn:11401/condor/measurepair/?format=json</conderNodeInfo>
+	<getMeasurementInfo>http://mickey.buaa.edu.cn:11401/condor/measurementinfo/?format=json</getMeasurementInfo>
+	<getMeasurementAvgdata>http://mickey.buaa.edu.cn:11401/condor/measurementdata/average/</getMeasurementAvgdata>
+	<getMeasurementData>http://mickey.buaa.edu.cn:11401/condor/measurementdata/</getMeasurementData>
+	<getTransferTime>http://mickey.buaa.edu.cn:11401/condor/netcatdata/</getTransferTime>
+	<getIperfTime>http://mickey.buaa.edu.cn:11401/condor/iperftime/</getIperfTime>
+	<getPerfsonarTransferTime>http://mickey.buaa.edu.cn:11401/perfsonar/throughput/</getPerfsonarTransferTime>
+</nodes>

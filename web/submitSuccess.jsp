@@ -205,17 +205,9 @@
 						
 						<!-- wizard steps -->
 						<ul class="bwizard-steps">
-							<li>
-									<span class="label badge-inverse">1</span>
-									<a href="#inverse-tab1" data-toggle="tab">Step 1</a>
-							</li>
-							<li>
-									<span class="label badge-inverse">2</span>
-									<a>Step 2</a>
-							</li>
 							<li class="active">
-									<span class="label badge-inverse">3</span>
-									<a>Step 3: Result</a>
+									<span class="label badge-inverse"></span>
+									<a>Result</a>
 							</li>
 						</ul>
 						<!-- end wizard steps -->	

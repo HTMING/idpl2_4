@@ -2015,6 +2015,12 @@
 				rules : {
 					testName : "required",
 					experimentName : "required",
+                    src_host: {
+						required: true,
+					},
+                    dst_host: "required",
+                    src_path: "required",
+                    dst_path: "required",
 					usernameRegister : {
 						required : true,
 						maxlength : 12

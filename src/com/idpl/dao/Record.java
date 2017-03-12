@@ -1,62 +1,113 @@
 package com.idpl.dao;
 
+import sun.security.pkcs11.P11Util;
+
 public class Record {
-	private long recordId;       //ÊµÑé¼ÇÂ¼ID
-	private String testName;     //ÊµÑéÃû³Æ
-	private String way;          //Êý¾Ý´«Êä·½·¨
-	private String method;       //Êý¾Ý´«Êä·½Ê½
-	private String protocol;     //Êý¾Ý´«ÊäÁ´Â·Ð­Òé
-	private String dataSource;   //Êý¾ÝÔ´
-	private String dataSize;     //Êý¾Ý´óÐ¡
-	private String dataDestination;  //Êý¾ÝÄ¿µÄµØ
-	private String repeat;        //Êý¾Ý´«ÊäÆµÂÊ
+	private long recordId;       //Êµï¿½ï¿½ï¿½Â¼ID
+	private String testName;     //Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String way;          //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ä·½ï¿½ï¿½
+	private String method;       //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ä·½Ê½
+	private String protocol;     //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½Â·Ð­ï¿½ï¿½
+	private String dataSource;   //ï¿½ï¿½ï¿½ï¿½Ô´
+	private String dataSize;     //ï¿½ï¿½ï¿½Ý´ï¿½Ð¡
+	private String dataDestination;  //ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Äµï¿½
+	private String repeat;        //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Æµï¿½ï¿½
 	private String number;
 	private String parallel;
 	private String username;
 	private int repeatPart;
 	private int percentage;
-	private int clusterId;       //condorµÄclusterµÄID
-	private int jobId;           //condorµÄjobµÄID
+	private int clusterId;       //condorï¿½ï¿½clusterï¿½ï¿½ID
+	private int jobId;           //condorï¿½ï¿½jobï¿½ï¿½ID
 
-	private String Time_Start;    //Êý¾ÝÉè¶¨´«Êä¿ªÊ¼Ê±¼ä
-	private String Time_End;      //Êý¾ÝÉè¶¨´«Êä½áÊøÊ±¼ä
-	private String Date;          //Êý¾ÝÉè¶¨Ê±¼ä
-	private String startRunning;  //Êý¾ÝÊµ¼Ê¿ªÊ¼´«ÊäÊ±¼ä
-	private String completedTime; //Êý¾ÝÊµ¼Ê½áÊø´«ÊäÊ±¼ä
-	private String State;         //Êý¾Ý´«Êä×´Ì¬
-	private long experimentId;
-	public long getRecordId(){     //µÃµ½ÊµÑé¼ÇÂ¼ID
+
+	//by TIJK
+    private String experimentName;
+	private long exp_Id;
+	private String file_name;
+	private String src_host;
+	private String dst_host;
+	private String time_start;
+	private String time_end;
+	private int md5;
+	private double duration;
+	private long data_size;
+    private double bandwidth;
+    private String tool;
+
+
+
+
+	private String Time_Start;    //ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ä¿ªÊ¼Ê±ï¿½ï¿½
+	private String Time_End;      //ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String Date;          //ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨Ê±ï¿½ï¿½
+	private String startRunning;  //ï¿½ï¿½ï¿½ï¿½Êµï¿½Ê¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String completedTime; //ï¿½ï¿½ï¿½ï¿½Êµï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String State;         //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½×´Ì¬
+    private long experimentId;
+
+
+    public String getExperimentName() {return this.experimentName;}
+    public long getExp_Id() {return this.exp_Id;}
+    public String getFile_name() {return this.file_name;}
+    public String getSrc_host() {return this.src_host;}
+    public String getDst_host() {return this.dst_host;}
+    public String getTime_start() {return this.Time_Start;}
+    public String getTime_end() {return this.Time_End;}
+    public int getMd5() {return this.md5;}
+    public double getDuration() {return this.duration;}
+    public long getData_size() {return this.data_size;}
+    public double getBandwidth() {return this.bandwidth;}
+    public String getTool() {return this.tool;}
+
+    public void setExperimentName(String experimentName) {this.experimentName = experimentName;}
+    public void setExp_Id(long exp_Id) {this.exp_Id = exp_Id;}
+    public void setFile_name(String file_name) {this.file_name = file_name;}
+    public void setSrc_host(String src_host) {this.src_host = src_host;}
+    public void setDst_host(String dst_host) {this.dst_host = dst_host;}
+    public void setTime_start(String time_start) {this.time_start = time_start;}
+    public void setTime_end(String time_end) {this.time_end = time_end;}
+    public void setMd5(int md5) {this.md5 = md5;}
+    public void setDuration(double duration) {this.duration = duration;}
+    public void setData_size(long data_size) {this.data_size = data_size;}
+    public void setBandwidth(double bandwidth) {this.bandwidth = bandwidth;}
+    public void setTool(String tool) {this.tool = tool;}
+
+
+
+
+    public long getRecordId(){     //ï¿½Ãµï¿½Êµï¿½ï¿½ï¿½Â¼ID
 		return this.recordId;
 	}
-	public int getClusterId(){     //µÃµ½clusterµÄID
+	public int getClusterId(){     //ï¿½Ãµï¿½clusterï¿½ï¿½ID
 		return this.clusterId;
 	}
-	public int getJobId(){         //µÃµ½×÷ÒµµÄID
+	public int getJobId(){         //ï¿½Ãµï¿½ï¿½ï¿½Òµï¿½ï¿½ID
 		return this.jobId;
 	}
-	public String getTestName(){   //µÃµ½ÊµÑéÃû³Æ
+	public String getTestName(){   //ï¿½Ãµï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		return this.testName;
 	}
-	public String getWay(){        //µÃµ½ÊµÑé´«Êä·½·¨
+	public String getWay(){        //ï¿½Ãµï¿½Êµï¿½é´«ï¿½ä·½ï¿½ï¿½
 		return this.way;
 	}
-	public String getMethod(){    //µÃµ½ÊµÑé´«Êä·½Ê½
+	public String getMethod(){    //ï¿½Ãµï¿½Êµï¿½é´«ï¿½ä·½Ê½
 		return this.method;
 	}
-	public String getProtocol(){   //µÃµ½ÊµÑé´«ÊäÁ´Â·Ð­Òé
+	public String getProtocol(){   //ï¿½Ãµï¿½Êµï¿½é´«ï¿½ï¿½ï¿½ï¿½Â·Ð­ï¿½ï¿½
 		return this.protocol;
 	}
-	public String getDataSource(){ //µÃµ½Êý¾ÝÔ´
+	public String getDataSource(){ //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 		return this.dataSource;
 	}
-	public String getDataSize(){  //µÃµ½Êý¾Ý´óÐ¡
+	public String getDataSize(){  //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½Ð¡
 		return this.dataSize;
 	}
 
-	public String getDataDestination(){   //µÃµ½Êý¾ÝÄ¿µÄµØ
+	public String getDataDestination(){   //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Äµï¿½
 		return this.dataDestination;
 	}
-	public String getRepeat(){        //µÃµ½Êý¾Ý´«ÊäÆµÂÊ
+	public String getRepeat(){        //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Æµï¿½ï¿½
 		return this.repeat;
 	}
 	public String getNumber(){
@@ -69,13 +120,13 @@ public class Record {
 		return this.username;
 	}
 	
-	public String getTime_Start(){    //µÃµ½Êý¾ÝÉè¶¨´«Êä¿ªÊ¼Ê±¼ä
+	public String getTime_Start(){    //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ä¿ªÊ¼Ê±ï¿½ï¿½
 		return this.Time_Start;
 	}
-	public String getTime_End(){      //µÃµ½Êý¾ÝÉè¶¨´«Êä½áÊøÊ±¼ä
+	public String getTime_End(){      //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		return this.Time_End;
 	}
-	public String getDate(){          //µÃµ½Êý¾ÝÉè¶¨Ê±¼ä
+	public String getDate(){          //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨Ê±ï¿½ï¿½
 		return this.Date;
 	}
 	public int getRepeatPart(){
@@ -84,44 +135,44 @@ public class Record {
 	public int getPercentage(){
 		return this.percentage;
 	}
-	public String getStartRunning(){  //µÃµ½Êý¾Ý´«ÊäÊµ¼Ê¿ªÊ¼Ê±¼ä
+	public String getStartRunning(){  //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê¿ï¿½Ê¼Ê±ï¿½ï¿½
 		return this.startRunning;
 	}
-	public String getCompletedTime(){ //µÃµ½Êý¾Ý´«ÊäÊµ¼Ê½áÊøÊ±¼ä
+	public String getCompletedTime(){ //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		return this.completedTime;
 	}
-	public String getState(){        //µÃµ½Êý¾Ý´«Êä×÷Òµ×´Ì¬
+	public String getState(){        //ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½Òµ×´Ì¬
 		return this.State;
 	}
 	public long getExperimentId(){
 		return this.experimentId;
 	}
 
-	public void setRecordId(long id){           //ÉèÖÃÊµÑé¼ÇÂ¼ID
+	public void setRecordId(long id){           //ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Â¼ID
 		this.recordId=id;
 	}
-	public void setTestName(String name){    //ÉèÖÃÊµÑéÃû³Æ
+	public void setTestName(String name){    //ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		this.testName=name;
 	}
-	public void setWay(String way){        //ÉèÖÃ´«Êä·½·¨
+	public void setWay(String way){        //ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ä·½ï¿½ï¿½
 		this.way=way;
 	}
-	public void setMethod(String method){   //ÉèÖÃ´«Êä·½Ê½
+	public void setMethod(String method){   //ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ä·½Ê½
 		this.method=method;
 	}
-	public void setProtocol(String protocol){    //ÉèÖÃÊý¾Ý´«ÊäÁ´Â·Ð­Òé
+	public void setProtocol(String protocol){    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½Â·Ð­ï¿½ï¿½
 		this.protocol=protocol;
 	}
-	public void setDataSource(String dataSource){   //ÉèÖÃÊý¾ÝÔ´
+	public void setDataSource(String dataSource){   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 		this.dataSource=dataSource;
 	}
-	public void setDataSize(String dataSize){      //ÉèÖÃÊý¾Ý´óÐ¡
+	public void setDataSize(String dataSize){      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½Ð¡
 		this.dataSize=dataSize;
 	}
-	public void setDataDestination(String dataDestination){   //ÉèÖÃÊý¾ÝÄ¿µÄµØ
+	public void setDataDestination(String dataDestination){   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Äµï¿½
 		this.dataDestination=dataDestination;
 	}
-	public void setRepeat(String repeat){      //ÉèÖÃÊý¾Ý´«ÊäÆµÂÊ
+	public void setRepeat(String repeat){      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Æµï¿½ï¿½
 		this.repeat=repeat;
 	}
 	public void setNumber(String number){
@@ -133,13 +184,13 @@ public class Record {
 	public void setUsername(String username){
 		this.username=username;
 	}
-	public void setTime_Start(String time_Start){   //ÉèÖÃÊý¾ÝÉè¶¨¿ªÊ¼Ê±¼ä
+	public void setTime_Start(String time_Start){   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 		this.Time_Start=time_Start;
 	}
-	public void setTime_End(String time_End){     //ÉèÖÃÊý¾ÝÉè¶¨½áÊøÊ±¼ä
+	public void setTime_End(String time_End){     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		this.Time_End=time_End;
 	}
-	public void setDate(String date){         //ÉèÖÃÊý¾ÝÉè¶¨Ê±¼ä
+	public void setDate(String date){         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è¶¨Ê±ï¿½ï¿½
 		this.Date=date;
 	}
 	public void setRepeatPart(int repeatPart){
@@ -148,19 +199,19 @@ public class Record {
 	public void setPercentage(int percentage){
 		this.percentage=percentage;
 	}
-	public void setClusterId(int clusterId){   //ÉèÖÃClusterµÄID
+	public void setClusterId(int clusterId){   //ï¿½ï¿½ï¿½ï¿½Clusterï¿½ï¿½ID
 		this.clusterId=clusterId;
 	}
-	public void setJobId(int jobId){          //ÉèÖÃ×÷ÒµµÄID
+	public void setJobId(int jobId){          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ID
 		this.jobId=jobId;
 	}
-	public void setStartRunning(String startRunning){     //ÉèÖÃÊý¾Ý´«ÊäÊµ¼Ê¿ªÊ¼Ê±¼ä
+	public void setStartRunning(String startRunning){     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê¿ï¿½Ê¼Ê±ï¿½ï¿½
 		this.startRunning=startRunning;
 	}
-	public void setCompletedTime(String completedTime){   //ÉèÖÃÊý¾Ý´«ÊäÊµ¼Ê½áÊøÊ±¼ä
+	public void setCompletedTime(String completedTime){   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Êµï¿½Ê½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		this.completedTime=completedTime;
 	}
-	public void setState(String state)         //ÉèÖÃÊý¾Ý´«Êä×´Ì¬
+	public void setState(String state)         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½×´Ì¬
 	{
 		this.State=state;
 	}

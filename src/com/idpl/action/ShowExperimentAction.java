@@ -53,7 +53,7 @@ public class ShowExperimentAction extends BaseAction{
 		int RecordNumberInOnePage=10;
 		ExperimentDAO experimentDAO=ExperimentDAOFactory.getExperimentDAOInstance();
 		String username=(String)session.getAttribute("username");
-		//System.out.println("ShowExperiment Action");
+		System.out.println("ShowExperiment Action");
 		if(username!=null&&!username.equals("manager"))
 		{
 			//System.out.println("Show Experiment!");

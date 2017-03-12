@@ -26,6 +26,7 @@ public class ExperimentAction extends BaseAction {
 	private String dst_host;
 	private String src_path;
     private String dst_path;
+    private String testsequence;
     private String cron_hour;
     private String cron_minute;
 
@@ -90,6 +91,7 @@ public class ExperimentAction extends BaseAction {
     public String getDst_host() {return dst_host;}
     public String getSrc_path() {return src_path;}
     public String getDst_path() {return dst_path;}
+    public String getTestsequence() {return testsequence;}
     public String getCron_hour() {return cron_hour;}
     public String getCron_minute() {return cron_minute;}
 
@@ -100,6 +102,7 @@ public class ExperimentAction extends BaseAction {
 	public void setDst_path(String dst_path) {this.dst_path=dst_path;}
 	public void setCron_hour(String cron_hour) {this.cron_hour=cron_hour;}
 	public void setCron_minute(String cron_minute) {this.cron_minute=cron_minute;}
+	public void setTestsequence(String testsequence) {this.testsequence=testsequence;}
 
 
 
@@ -183,15 +186,16 @@ public class ExperimentAction extends BaseAction {
 			experiment.setDst_path(dst_path);
 			experiment.setCron_hour(cron_hour);
 			experiment.setCron_minute(cron_minute);
+			experiment.setTestsequence(testsequence);
 			//experiment.setTimeStart(timeStart);
 			//experiment.setTimeEnd(timeEnd);
 //			experiment.setDate(date);
-			//experiment.setTimeCreate(createUnixtime);
+			experiment.setTimeCreate(createUnixtime);
 			experiment.setUsername(username);
-			System.out.println("112");
+			//System.out.println("112");
 			try {
 				
-				experimentId=experimentDAO.insert(experiment, "experiment");
+					experimentId=experimentDAO.insert(experiment, "experiment");
 				//session.setAttribute("experimentId", ExperimentId);
 				result="success";
                 System.out.println("113");
@@ -248,9 +252,26 @@ public class ExperimentAction extends BaseAction {
 				e.printStackTrace();
 			}
 */
+
+
+            String var = "SRC_HOST=\"" + src_host + "\" SRC_PATH=\"" + src_path + "\" DST_HOST=\"" + dst_host + "\" DST_PATH=\"" + dst_path
+                    + "\"  TESTSEQUENCE=\"" + testsequence +"\" TIMEOUT=\"120\" cron_minute=\"20\"  ";
+            SExperiment exp = new SExperiment(experimentId, var);
+            List<SExperiment> list = new ArrayList<SExperiment>();
+            list.add(exp);
+
             Transfer transfer = Transfer.getInstance();
+            transfer.setExpList(list);
             transfer.setUser(username);
             transfer.setId(experimentId);
+            transfer.setStarttime(0);
+            transfer.setStoptime(0);
+            try {
+                transfer.submit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
 		}
 		else

@@ -24,6 +24,7 @@ public class Experiment {
 	private String dst_path;
 	private String cron_hour;
 	private String cron_minute;
+	private String testsequence;
 
 
 	public void setSrc_host(String src_host) {this.src_host=src_host;}
@@ -32,6 +33,7 @@ public class Experiment {
 	public void setDst_path(String dst_path) {this.dst_path=dst_path;}
 	public void setCron_hour(String cron_hour) {this.cron_hour=cron_hour;}
 	public void setCron_minute(String cron_minute) {this.cron_minute=cron_minute;}
+	public void setTestsequence(String testsequence) {this.testsequence=testsequence;}
 
 	public String getSrc_host() {return this.src_host;}
 	public String getDst_host() {return this.dst_host;}
@@ -39,6 +41,7 @@ public class Experiment {
 	public String getDst_path() {return this.dst_path;}
 	public String getCron_hour() {return this.cron_hour;}
 	public String getCron_minute() {return this.cron_minute;}
+	public String getTestsequence() {return this.testsequence;}
 
 
 	public long getExperimentId(){

@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<nodes>
+	<hostname name="bwctl">
+		<url>:8085/perfSONAR_PS/services/pSB</url>
+	</hostname>
+	<hostname name="owamp">
+		<url>:8085/perfSONAR_PS/services/pSB</url>
+	</hostname>
+	<hostname name="pinger">
+		<url>:8075/perfSONAR_PS/services/pinger/ma</url>
+	</hostname>
+	<ip name="WISC">
+		<addr type="ipv4">115.25.138.208</addr>
+		<addr type="ipv6">2001:da8:203:d406:5ef9:ddff:fe2e:f850</addr>
+	</ip>
+	<ip name="BUAA">
+		<addr type="ipv4">115.25.138.206</addr>
+		<addr type="ipv6">2001:da8:203:d406:5ef9:ddff:fe2e:f836</addr>
+	</ip>
+	<ip name="CNIC">
+		<addr type="ipv4">115.25.138.207</addr>
+		<addr type="ipv6">2001:da8:203:d406:5ef9:ddff:fe2e:f843</addr>
+	</ip>
+	<ip name="UCSD">
+	        <addr type="ipv4">115.25.138.228</addr>
+	        <addr type="ipv6">2001:da8:203:d406:5ef9:ddff:fe2e:f86a</addr>
+	</ip>
+	<jsonService>http://115.25.138.244:11401/perfsonar/</jsonService>
+	<WISC>
+		<ipv4>115.25.138.208</ipv4>
+		<ipv6>2001:da8:203:d406:5ef9:ddff:fe2e:f850</ipv6>
+		<httpport>11401</httpport>
+		<ftpport>21</ftpport>
+		<httpsuf>/download/</httpsuf>
+		<httphome>/home/idpl_test/download/</httphome>
+		<ftphome>/home/idpl_test/</ftphome>
+		<ftpuser>idpl_test</ftpuser>
+		<ftppasswd>idpl_test@jsi</ftppasswd>
+		<machine>jsi-dell12</machine>
+	</WISC>
+	<BUAA>
+		<ipv4>115.25.138.206</ipv4>
+		<ipv6>2001:da8:203:d406:5ef9:ddff:fe2e:f836</ipv6>
+		<httpport>11401</httpport>
+		<ftpport>21</ftpport>
+		<httpsuf>/download/</httpsuf>
+		<httphome>/home/idpl_test/download/</httphome>
+		<ftphome>/home/idpl_test/</ftphome>
+		<ftpuser>idpl_test</ftpuser>
+		<ftppasswd>idpl_test@jsi</ftppasswd>
+		<machine>jsi-dell10</machine>
+	</BUAA>
+	<CNIC>
+		<ipv4>115.25.138.207</ipv4>
+		<ipv6>2001:da8:203:d406:5ef9:ddff:fe2e:f843</ipv6>
+		<httpport>11401</httpport>
+		<ftpport>21</ftpport>
+		<httpsuf>/download/</httpsuf>
+		<httphome>/home/idpl_test/download/</httphome>
+		<ftphome>/home/idpl_test/</ftphome>
+		<ftpuser>idpl_test</ftpuser>
+		<ftppasswd>idpl_test@jsi</ftppasswd>
+		<machine>jsi-dell11</machine>
+	</CNIC>
+	<UCSD>
+		<ipv4>115.25.138.228</ipv4>
+		<ipv6>2001:da8:203:d406:5ef9:ddff:fe2e:f86a</ipv6>
+		<httpport>11401</httpport>
+		<ftpport>21</ftpport>
+		<httpsuf>/download/</httpsuf>
+		<httphome>/home/idpl_test/download/</httphome>
+		<ftphome>/home/idpl_test/</ftphome>
+		<ftpuser>idpl_test</ftpuser>
+		<ftppasswd>idpl_test@jsi</ftppasswd>
+		<machine>jsi-dell14</machine>
+	</UCSD>
+	<ws>
+		<ipandport>http://10.1.1.85:8089</ipandport>
+	</ws>
+	<database>
+		<address>jdbc:mysql://localhost:3306/idpl</address>
+		<table>idplExperiment</table>
+		<user>root</user>
+		<passwd>password</passwd>
+	</database>
+	<script>
+		<generator>idpl_data_generator</generator>
+		<transfer>idpl_data_transfer</transfer>
+		<remove>idpl_data_rm</remove>
+		<homedir>/idpl_scripts/</homedir>
+	</script>
+</nodes>

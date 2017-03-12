@@ -2014,7 +2014,11 @@
 			$("#uislider-demo").validate({
 				rules : {
 					testName : "required",
-					experimentName : "required",
+					//experimentName : "required",
+                    src_host : "required",
+                    dst_host : "required",
+                    src_path : "required",
+                    dst_path : "required",
 					usernameRegister : {
 						required : true,
 						maxlength : 12

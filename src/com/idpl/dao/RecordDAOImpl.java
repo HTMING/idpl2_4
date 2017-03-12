@@ -93,7 +93,48 @@ public class RecordDAOImpl implements RecordDAO{
 			dbc.close();
 		}
 	}
-	public Record queryById(long id,String TableName,String username,long experimentId) throws Exception{
+
+
+
+	//by TIJK
+
+	public Record queryById(long experimentId, String TableName) throws Exception {
+	    Record record = null;
+        String sql="SELECT * FROM "+TableName+" WHERE experimentId="+experimentId;
+        PreparedStatement pstmt = null;
+        DataBaseConnection dbc = null;
+        if (TableName.equals("log_record")) {
+            try {
+                dbc = new DataBaseConnection(TableName);
+                pstmt=dbc.getConnection().prepareStatement(sql);
+                ResultSet rs=pstmt.executeQuery();
+                if(rs.next()) {
+                    record = new Record();
+                    record.setExp_Id(rs.getLong(1));
+                    record.setSrc_host(rs.getString(2));
+                    record.setDst_host(rs.getString(3));
+                    record.setTime_start(rs.getString(4));
+                    record.setTime_end(rs.getString(5));
+                    record.setMd5(rs.getInt(6));
+                    record.setDuration(rs.getDouble(7));
+                    record.setData_size(rs.getLong(8));
+                    record.setBandwidth(rs.getDouble(9));
+                    record.setTool(rs.getString(10));
+                }
+            } catch(Exception e){
+                    throw new Exception("Query By Id Fail!");
+            }
+			finally{
+                    dbc.close();
+            }
+        }
+        return record;
+    }
+
+
+
+
+	public Record queryById1(long id,String TableName,String username,long experimentId) throws Exception{
 		Record record=null;
 		long recordId;
 		String sql="SELECT * FROM "+TableName+" WHERE id=? AND username='"+username+"' AND experimentId="+experimentId;		
@@ -138,6 +179,7 @@ public class RecordDAOImpl implements RecordDAO{
 		}
 		return record;
 	}
+
 	public List<Record> queryAll(String TableName,String username,long experimentId) throws Exception{
 		List<Record> all= new ArrayList<Record>();
 		String sql="SELECT * FROM "+TableName+" WHERE username='"+username+"' AND experimentId="+experimentId;

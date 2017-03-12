@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ExperimentImpl implements ExperimentDAO {
 	public long insert(Experiment experiment,String TableName) throws Exception{
-		String sql="INSERT INTO "+TableName+"(id,experimentName,username,src_host,dst_host,src_path,dst_path,cron_hour,cron_minute) VALUES (?,?,?,?,?,?,?,?,?)";
+		String sql="INSERT INTO "+TableName+"(id,experimentName,username,src_host,dst_host,src_path,dst_path,testsequence,cron_hour,cron_minute,timeCreate) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt=null;
 		DataBaseConnection dbc=null;
 		
@@ -33,8 +33,10 @@ public class ExperimentImpl implements ExperimentDAO {
 			pstmt.setString(5, experiment.getDst_host());
 			pstmt.setString(6, experiment.getSrc_path());
 			pstmt.setString(7, experiment.getDst_path());
-			pstmt.setString(8, experiment.getCron_hour());
-			pstmt.setString(9, experiment.getCron_minute());
+			pstmt.setString(8, experiment.getTestsequence());
+			pstmt.setString(9, experiment.getCron_hour());
+			pstmt.setString(10, experiment.getCron_minute());
+			pstmt.setLong(11, experiment.getTimeCreate());
 			//pstmt.setLong(4 ,experiment.getTimeStart());
 			//pstmt.setLong(5 ,experiment.getTimeEnd());
 //			pstmt.setLong(6 ,0);
@@ -126,16 +128,21 @@ public class ExperimentImpl implements ExperimentDAO {
 		try{
 			dbc=new DataBaseConnection(TableName);
 			pstmt=dbc.getConnection().prepareStatement(sql);
-			pstmt.setLong(1, id);
+			//pstmt.setLong(1, id);
 			ResultSet rs=pstmt.executeQuery();
 			if(rs.next()){
 				experiment=new Experiment();
 				experiment.setExperimentId(rs.getLong(1));
+				//experiment.setExperimentName(rs.getString(2));
+				//experiment.setUsername(rs.getString(3));
+				//experiment.setTimeStart(rs.getLong(4));
+				//experiment.setTimeEnd(rs.getLong(5));
+				//experiment.setStageNumber(getExperimentStageNumber("test",username,rs.getLong(1)));
 				experiment.setExperimentName(rs.getString(2));
 				experiment.setUsername(rs.getString(3));
-				experiment.setTimeStart(rs.getLong(4));
-				experiment.setTimeEnd(rs.getLong(5));
-				experiment.setStageNumber(getExperimentStageNumber("test",username,rs.getLong(1)));
+				experiment.setSrc_host(rs.getString(4));
+				experiment.setDst_host(rs.getString(5));
+				experiment.setTimeCreate(rs.getLong(11));
 				if(rs.getString(6)==null)
 					experiment.setSubmit("No");
 				else
@@ -176,13 +183,23 @@ public class ExperimentImpl implements ExperimentDAO {
 				experiment.setExperimentId(rs.getLong(1));
 				experiment.setExperimentName(rs.getString(2));
 				experiment.setUsername(rs.getString(3));
+
+				//by tijk
+				experiment.setSrc_host(rs.getString(4));
+				experiment.setDst_host(rs.getString(5));
+				experiment.setTimeCreate(rs.getLong(11));
+
+
+				/*
 				experiment.setTimeStart(rs.getLong(4));
 				experiment.setTimeEnd(rs.getLong(5));
 				experiment.setTimeCreate(rs.getLong(8));
 				allNumber=getExperimentStageNumber("test",rs.getString(3),rs.getLong(1));
-				
 				experiment.setStageNumber(allNumber);
+				*/
 //				System.out.println(allNumber);
+
+/*
 				RecordDAO recordDAO=RecordDAOFactory.getRecordDAOInstance();
 				stageList=recordDAO.queryAll("test",rs.getString(3),rs.getLong(1));
 				Iterator<Record> iter = stageList.iterator();
@@ -207,22 +224,28 @@ public class ExperimentImpl implements ExperimentDAO {
 				else
 					percentage=0;
 				experiment.setPercentage(percentage);
+*/
+/*
 				if(rs.getString(6)==null)
 					experiment.setSubmit("NO");
 				else
 					experiment.setSubmit(rs.getString(6));
 //				experiment.setDate(rs.getLong(7));
-				
+
+*/
 				idplExperiment=getIdplExperiment(rs.getLong(1));
 				
 				if(idplExperiment.getState()!=null)
 				{
+				    experiment.setSubmit("YES");
 					experiment.setState(idplExperiment.getState());
 					experiment.setStartRunning(idplExperiment.getStartRunning());
 					experiment.setCompletedTime(idplExperiment.getCompletedTime());
 				}
-				else
-					experiment.setState("Not Submit");
+				else {
+                    experiment.setState("Not Submit");
+                    experiment.setSubmit("NO");
+                }
 				all.add(experiment);
 				completeNumber=0;
 			}
@@ -237,6 +260,8 @@ public class ExperimentImpl implements ExperimentDAO {
 		}
 		return all;
 	}
+
+
 	public int getExperimentStageNumber(String TableName,String username,long experimentId) throws Exception{
 		int result=0;
 		String sql="SELECT * FROM "+TableName+" WHERE username='"+username+"' AND experimentId="+experimentId;

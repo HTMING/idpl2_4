@@ -47,7 +47,7 @@ public class UpdateStageAction extends BaseAction{
 		{
 			try {
 //				System.out.println("UpdateStageAction Doing!");
-				record=recordDAO.queryById(recordId, "test", username, experimentId);
+				record=recordDAO.queryById1(recordId, "test", username, experimentId);
 				result="success";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
