@@ -78,10 +78,10 @@
 		<ipandport>http://10.1.1.85:8089</ipandport>
 	</ws>
 	<database>
-		<address>jdbc:mysql://localhost:3306/idpl</address>
+		<address>jdbc:mysql://localhost:3306/cactest1</address>
 		<table>idplExperiment</table>
-		<user>root</user>
-		<passwd>password</passwd>
+		<user>idpl</user>
+		<passwd>idpl@jsi</passwd>
 	</database>
 	<script>
 		<generator>idpl_data_generator</generator>

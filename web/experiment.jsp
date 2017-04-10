@@ -299,7 +299,7 @@
                                                             <div class="controls">
                                                             <form role="form">
                                                                 <div class="form-group">
-                                                                    <select class="form-control" name="testsequence">
+                                                                    <select   class="form-control" name="testsequence">
                                                                         <option value="iperf">iperf</option>
                                                                         <option value="scp">scp</option>
                                                                         <option value="fdt">fdt</option>

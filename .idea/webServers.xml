@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ccbc859c-d849-49c1-b64e-846202018fbf" name="remote" url="http://115.25.138.209">
+        <fileTransfer host="115.25.138.209" port="22" rootFolder="/home/zwzhang/projects/idpl_tomcat/webapps" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
