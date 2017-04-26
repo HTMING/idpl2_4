@@ -341,7 +341,7 @@
     
     <script src="js/dataplace.js"></script>
     
-   <script src="js/bootstrap.min.js"></script>
+   <script src="js/include/bootstrap.min.js"></script>
 
 <!-- library for cookie management -->
 <script src="js/jquery.cookie.js"></script>

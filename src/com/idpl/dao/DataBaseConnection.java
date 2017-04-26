@@ -25,6 +25,7 @@ public class DataBaseConnection {
 
 
 /*
+
 	private String url="jdbc:mysql://localhost:3306/idpl";
 	private static final String user="root";
 	private static final String password="password";

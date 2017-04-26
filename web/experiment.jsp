@@ -16,6 +16,8 @@
 	<meta name="MobileOptimized" content="320" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
+
+
 	<!--// OPTIONAL & CONDITIONAL CSS FILES //-->   
 	<!-- date picker css -->
 	<link rel="stylesheet" href="css/datepicker.css?v=1" />
@@ -26,6 +28,9 @@
 	<!-- bootstrap wysimhtml5 editor -->
 	<link rel="stylesheet" href="css/bootstrap-wysihtml5.css?v=1" />
 	<link rel="stylesheet" href="css/wysiwyg-color.css" />
+
+      <!-- multiple selected -->
+      <link rel="stylesheet" href="css/bootstrap-select.min.css">
 	<!-- custom/responsive growl messages -->
 	<link rel="stylesheet" href="css/toastr.custom.css?v=1" />
 	<link rel="stylesheet" href="css/toastr-responsive.css?v=1" />
@@ -64,6 +69,11 @@
     <!--[if lt IE 9]>
    		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
    		<script src="js/include/respond.min.js"></script>
+
+
+
+
+
    	<![endif]-->
 
 	<!-- For Modern Browsers -->
@@ -280,16 +290,25 @@
                                                             <label class="control-label11" >&nbsp;&nbsp; Host to which data will be copied</label>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="src_path">SRC_PATH</label>
-                                                            <div class="controls">
-                                                                <input type="text" class="span12" name="src_path" id="src_path" />
-                                                            </div>
+                                                            <label class="control-label" >SRC_PATH</label>
+															<div class="controls">
+																<form role="form">
+																	<div class="form-group">
+																		<select   class="selectpicker" name="src_path" id="src_path">
+																			<option value="/home/idpl/10M">/home/idpl/10M</option>
+																			<option value="/home/idpl/100M">/home/idpl/100M</option>
+																			<option value="/home/idpl/500M">/home/idpl/500M</option>
+																			<option value="/home/idpl/1G">/home/idpl/1G</option>
+																		</select>
+																	</div>
+																</form>
+															</div>
                                                             <label class="control-label11" >&nbsp;&nbsp; Full path name of the file to be copied</label>
                                                         </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="dst_path">DST_PATH</label>
                                                             <div class="controls">
-                                                                <input type="text" class="span12" name="dst_path" id="dst_path" />
+                                                                <input type="text" class="span12" name="dst_path" value="10M" id="dst_path" />
                                                             </div>
                                                             <label class="control-label11" >&nbsp;&nbsp; relative path to which file will be copied</label>
                                                         </div>
@@ -299,11 +318,15 @@
                                                             <div class="controls">
                                                             <form role="form">
                                                                 <div class="form-group">
-                                                                    <select   class="form-control" name="testsequence">
+                                                                    <select   class="selectpicker" name="testsequence" multiple>
                                                                         <option value="iperf">iperf</option>
+																		<option value="iperf6">iperf6</option>
                                                                         <option value="scp">scp</option>
+																		<option value="scp6">scp6</option>
                                                                         <option value="fdt">fdt</option>
+																		<option value="fdt6">fdt6</option>
                                                                         <option value="netcat">netcat</option>
+																		<option value="netcat6">netcat6</option>
                                                                     </select>
                                                                 </div>
                                                             </form>
@@ -312,14 +335,14 @@
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="cron_hour">cron_hour</label>
+                                                            <label class="control-label" for="cron_hour">cron_hour (optional)</label>
                                                             <div class="controls">
                                                                 <input type="text" class="span12" name="cron_hour" id="cron_hour" />
                                                             </div>
                                                             <label class="control-label11" >&nbsp;&nbsp; hour on which placement will occur</label>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="cron_minute">cron_minute</label>
+                                                            <label class="control-label" for="cron_minute">cron_minute (optional)</label>
                                                             <div class="controls">
                                                                 <input type="text" class="span12" name="cron_minute" id="cron_minute" />
                                                             </div>
@@ -327,7 +350,7 @@
                                                         </div>
 
 														<div class="control-group" id="timepicker-demo">
-															<label class="control-label">Submit Time</label>
+															<label class="control-label">Submit Time (optional)</label>
 															<div class="controls">
 																
 																<div class="input-append date" id="datepicker-js" data-date-format="yyyy/mm/dd">
@@ -345,7 +368,7 @@
 														</div>
 														
 														<div class="control-group" id="timepicker-demo">
-															<label class="control-label">End Time</label>
+															<label class="control-label">End Time (optional)</label>
 															<div class="controls">
 																
 																<div class="input-append date" id="datepicker-js1" data-date-format="yyyy/mm/dd">
@@ -444,6 +467,8 @@
 	<!-- DISABLED <script src="js/include/jquery.dataTables.min.js"></script> -->
 	<!-- DISABLED <script src="js/include/DT_bootstrap.min.js"></script> -->
 
+
+
 	<script type="text/javascript">
 		var ismobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));	
 	    if(!ismobile){
@@ -532,6 +557,7 @@
     
     <!-- REQUIRED: Bootstrap engine -->
     <script src="js/include/bootstrap.min.js"></script>
+    <script src="js/include/bootstrap-select.min.js"></script>
     
     <!-- DO NOT REMOVE: Theme Config file -->
     <script src="js/config.js"></script>
@@ -576,6 +602,9 @@
 
         });
     </script>
+
+	<!-- change dst_path form src_path -->
+
   <script>
     $(function () {
     var arrayList = ["BUAAtoCNIC", 
