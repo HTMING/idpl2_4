@@ -258,7 +258,7 @@ public class ExperimentAction extends BaseAction {
 */
 
 			// test
-			System.out.println(testsequence);
+			//System.out.println(testsequence);
             String var = "SRC_HOST=\"" + src_host + "\" SRC_PATH=\"" + src_path + "\" DST_HOST=\"" + dst_host + "\" DST_PATH=\"" + dst_path
                     + "\"  TESTSEQUENCE=\"" + testsequence +"\" TIMEOUT=\"120\" cron_minute=\"20\"  ";
             SExperiment exp = new SExperiment(experimentId, var);

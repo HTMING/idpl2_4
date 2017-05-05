@@ -18,7 +18,7 @@ public class DataBaseConnection {
 	*/
 
 
-	private String url="jdbc:mysql://localhost:3306/cactest1";
+	private String url="jdbc:mysql://115.25.138.209:3306/cactest1";
     private static final String user="idpl";
     private static final String password="idpl@jsi";
 
