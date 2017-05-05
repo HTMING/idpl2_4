@@ -61,7 +61,19 @@
         	<result name="fail">/submitFail.jsp</result>
         	<result name="login">/login.html</result>
         </action>
-        
+
+        <action name="Re-editing" class="com.idpl.action.Re_editing">
+            <result name="success">/Re-editing.jsp</result>
+            <result name="fail">/experimentShow.jsp</result>
+            <result name="login">/login.html</result>
+        </action>
+
+        <action name="UpdateExperiment" class="com.idpl.action.UpdateExperiment">
+            <result name="success">/submitSuccess.jsp</result>
+            <result name="fail">/submitFail.jsp</result>
+            <result name="login">/login.html</result>
+        </action>
+
         <action name="showExperiment" class="com.idpl.action.ShowExperimentAction">
         	<result name="success">/experimentShow.jsp</result>
         	<result name="manager">/ManagerExperimentShow.jsp</result>

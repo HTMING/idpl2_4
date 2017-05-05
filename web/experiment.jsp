@@ -289,10 +289,10 @@
                                                             </div>
                                                             <label class="control-label11" >&nbsp;&nbsp; Host to which data will be copied</label>
                                                         </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" >SRC_PATH</label>
+														<div class="control-group">
+															<label class="control-label" >SRC_PATH</label>
 															<div class="controls">
-																<form role="form">
+
 																	<div class="form-group">
 																		<select   class="selectpicker" name="src_path" id="src_path">
 																			<option value="/home/idpl/10M">/home/idpl/10M</option>
@@ -301,10 +301,10 @@
 																			<option value="/home/idpl/1G">/home/idpl/1G</option>
 																		</select>
 																	</div>
-																</form>
+
 															</div>
-                                                            <label class="control-label11" >&nbsp;&nbsp; Full path name of the file to be copied</label>
-                                                        </div>
+															<label class="control-label11" >&nbsp;&nbsp; Full path name of the file to be copied</label>
+														</div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="dst_path">DST_PATH</label>
                                                             <div class="controls">
@@ -316,9 +316,8 @@
                                                         <div class="control-group">
                                                             <label class="control-label" >TESTSEQUENCE</label>
                                                             <div class="controls">
-                                                            <form role="form">
                                                                 <div class="form-group">
-                                                                    <select   class="selectpicker" name="testsequence" multiple>
+                                                                    <select   class="selectpicker" name="testsequence" multiple >
                                                                         <option value="iperf">iperf</option>
 																		<option value="iperf6">iperf6</option>
                                                                         <option value="scp">scp</option>
@@ -329,7 +328,7 @@
 																		<option value="netcat6">netcat6</option>
                                                                     </select>
                                                                 </div>
-                                                            </form>
+
                                                             </div>
                                                             <label class="control-label11" >&nbsp;&nbsp; the tool to translate the data</label>
                                                         </div>
@@ -604,6 +603,23 @@
     </script>
 
 	<!-- change dst_path form src_path -->
+
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('#src_path').change(function () {
+                var p = $(this).children('option:selected').val();
+                if (p == "/home/idpl/10M")
+                    var p1 = "10M";
+                else if (p == "/home/idpl/100M")
+                    var p1 = "100M";
+                else if (p == "/home/idpl/500M")
+                    var p1 = "500M";
+                else
+                    var p1 = "1G";
+                $('#dst_path').val(p1)
+            })
+        })
+	</script>
 
   <script>
     $(function () {

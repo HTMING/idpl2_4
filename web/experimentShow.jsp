@@ -241,7 +241,13 @@
 
                                             <div class="jarviswidget-editbox">
                                                 <div style="text-align:right">
-                                                    <div class="btn-group">
+                                                    <div class="btn-gr  oup">
+                                                        <s:if test="%{#experiment.submit=='NO'}">
+                                                            <%-- <td><a href="showTest?experimentId=${experiment.experimentId}">${experiment.submit}</a></td> --%>
+                                                            <a href="Re-editing?experimentId=${experiment.experimentId}">
+                                                                <button type="button" class="btn medium"><i class="cus-arrow-refresh"></i>Re-editing</button>
+                                                            </a>
+                                                        </s:if>
                                                         <a href="deleteExperiment?experimentId=${experiment.experimentId}">
                                                             <button type="button" class="btn medium btn-danger"><i
                                                                     class="cus-bin-closed"></i> Delete
@@ -293,7 +299,7 @@
                                                         <!-- <th>Experiment name</th> -->
                                                         <th>Source</th>
                                                         <th>Destination</th>
-                                                        <th>IP Protocol</th>
+                                                        <th>Tools</th>
                                                         <th>Data Set</th>
                                                         <!-- <th>Stage</th>  -->
                                                         <!-- <th>Submit</th> -->
@@ -309,8 +315,8 @@
                                                             <%-- <td>${experiment.experimentName}</td> --%>
                                                         <td>${experiment.src_host}</td>
                                                         <td>${experiment.dst_host}</td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>${experiment.testsequence}</td>
+                                                        <td>${experiment.dst_path}</td>
                                                         <td></td>
 
 

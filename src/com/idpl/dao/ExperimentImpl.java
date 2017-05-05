@@ -52,8 +52,37 @@ public class ExperimentImpl implements ExperimentDAO {
 		}
 		return NewId;
 	}
-	public void update(Experiment experiment,String TableName) throws Exception{
-	
+	public void update(Experiment experiment,String TableName, long experimentId) throws Exception{
+		String sql = "UPDATE " + TableName + " SET experimentName=?,src_host=?,dst_host=?,src_path=?,dst_path=?,testsequence=?,cron_hour=?,cron_minute=? WHERE id='" + experimentId + "'";
+		PreparedStatement pstmt=null;
+		DataBaseConnection dbc=null;
+		try{
+			dbc=new DataBaseConnection(TableName);
+		}catch(Exception e){
+			throw new Exception("Connection Error!");
+		}
+		try{
+
+			pstmt=dbc.getConnection().prepareStatement(sql);
+			pstmt.setString(1,experiment.getExperimentName());
+			pstmt.setString(2,experiment.getSrc_host());
+			pstmt.setString(3,experiment.getDst_host());
+			pstmt.setString(4,experiment.getSrc_path());
+			pstmt.setString(5,experiment.getDst_path());
+			pstmt.setString(6,experiment.getTestsequence());
+			pstmt.setString(7,experiment.getCron_hour());
+			pstmt.setString(8,experiment.getCron_minute());
+			//pstmt.setLong(9,experiment.getTimeCreate());
+			pstmt.executeUpdate();
+			pstmt.close();
+
+		}catch (Exception e){
+			throw new Exception("Insert Error!");
+		}
+		finally{
+			dbc.close();
+		}
+
 	}
 	public void submit(String TableName,Long experimentId) throws Exception{
 		String sql="UPDATE "+TableName+" SET submit='YES' WHERE id="+experimentId;
@@ -159,6 +188,41 @@ public class ExperimentImpl implements ExperimentDAO {
 		}
 		return experiment;
 	}
+
+	public Experiment queryById_exp(long id, String TableName) throws Exception{
+		Experiment experiment = null;
+		String sql = "SELECT * FROM " + TableName + " WHERE id='" + id + "'";
+		PreparedStatement pstmt=null;
+		DataBaseConnection dbc=null;
+		try {
+			dbc=new DataBaseConnection(TableName);
+			pstmt=dbc.getConnection().prepareStatement(sql);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()){
+				experiment=new Experiment();
+				experiment.setExperimentId(rs.getLong(1));
+				experiment.setExperimentName(rs.getString(2));
+				experiment.setUsername(rs.getString(3));
+				experiment.setSrc_host(rs.getString(4));
+				experiment.setDst_host(rs.getString(5));
+				experiment.setSrc_path(rs.getString(6));
+				experiment.setDst_path(rs.getString(7));
+				experiment.setTestsequence(rs.getString(8));
+				experiment.setCron_hour(rs.getString(9));
+				experiment.setCron_minute(rs.getString(10));
+				experiment.setTimeCreate(rs.getLong(11));
+//				experiment.setDate(rs.getString(7));
+			}
+			rs.close();
+			pstmt.close();
+		} catch (Exception e) {
+			throw new Exception("Query By Id(exp) Fail!");
+		} finally {
+			dbc.close();
+		}
+		return experiment;
+	}
+
 	public List<Experiment> queryAll(String TableName,String username) throws Exception{
 		List<Experiment> all= new ArrayList<Experiment>();
 		String sql="SELECT * FROM "+TableName+" WHERE username='"+username+"' ORDER BY id DESC";
@@ -187,6 +251,8 @@ public class ExperimentImpl implements ExperimentDAO {
 				//by tijk
 				experiment.setSrc_host(rs.getString(4));
 				experiment.setDst_host(rs.getString(5));
+				experiment.setDst_path(rs.getString(7));
+				experiment.setTestsequence(rs.getString(8));
 				experiment.setTimeCreate(rs.getLong(11));
 
 

@@ -15,7 +15,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/condor.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/jaxrpc.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/wsdl4j.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/IdplAPI.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/idplAPI.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/birdbath.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/webcondor.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/activation.jar" />
